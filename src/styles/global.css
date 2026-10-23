@@ -154,6 +154,9 @@ footer a { display: inline-flex; align-items: center; gap: 7px; }
   header nav a { font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; }
   .brand small { font-size: 10px; }
   .section { padding-inline: 7%; }
+  .about { gap: 26px; padding-block: 52px; }
+  .about-mark { width: min(72vw, 280px); }
+  .about h2 { font-size: clamp(31px, 8vw, 39px); line-height: 1.18; }
   .family { gap: 14px; }
   .scroll-hint { gap: 14px; }
   .contact-links { align-items: center; }
