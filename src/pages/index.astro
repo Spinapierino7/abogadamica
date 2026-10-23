@@ -1,6 +1,18 @@
 ---
+import { Image } from 'astro:assets';
+import estudio from '../assets/estudio.jpg';
+import '../styles/global.css';
 const whatsapp = 'https://wa.me/5492915351031?text=Hola%20Mica%2C%20quisiera%20coordinar%20una%20consulta.';
 const areas = ['Derecho Penal', 'Sucesiones', 'Amparos', 'Jubilaciones'];
+const canonical = Astro.site ? new URL('/', Astro.site) : undefined;
+const indexable = Boolean(canonical) && process.env.VERCEL_ENV !== 'preview';
+const profile = {
+  '@context': 'https://schema.org', '@type': 'LegalService',
+  name: 'Abogada Spina', description: 'Asesoramiento jurídico en familia, penal, sucesiones, amparos y jubilaciones.',
+  telephone: '+5492915351031', email: 'abogadaspina@gmail.com',
+  areaServed: ['Bahía Blanca, Buenos Aires', 'Choele Choel, Río Negro'],
+  ...(canonical ? {url: canonical.href} : {}),
+};
 ---
 <!doctype html>
 <html lang="es-AR">
@@ -10,6 +22,18 @@ const areas = ['Derecho Penal', 'Sucesiones', 'Amparos', 'Jubilaciones'];
   <title>Abogada Spina · Familia y asesoramiento jurídico en Bahía Blanca y Choele Choel</title>
   <meta name="description" content="Micaela Spina, abogada. Atención en Bahía Blanca y Choele Choel, presencial y virtual. Familia, penal, sucesiones, amparos y jubilaciones. Coordiná tu consulta." />
   <meta name="theme-color" content="#123648" />
+  <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
+  {canonical && <link rel="canonical" href={canonical} />}
+  <link rel="icon" type="image/png" sizes="800x800" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:title" content="Abogada Spina · Un espacio para escucharte" />
+  <meta property="og:description" content="Atención cercana en Bahía Blanca y Choele Choel. Coordiná tu consulta presencial o virtual con Micaela Spina." />
+  {canonical && <meta property="og:url" content={canonical} />}
+  {canonical && <meta property="og:image" content={new URL('/images/logo.png', canonical)} />}
+  <meta property="og:image:alt" content="Logo de Micaela Spina, abogada" />
+  <script type="application/ld+json" set:html={JSON.stringify(profile).replaceAll('<', '\\u003c')} />
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -21,7 +45,7 @@ const areas = ['Derecho Penal', 'Sucesiones', 'Amparos', 'Jubilaciones'];
   <main id="contenido">
     <section class="hero" id="inicio">
       <div class="hero-copy"><p class="eyebrow">BAHÍA BLANCA · CHOELE CHOEL</p><h1>Un espacio para<br />escucharte.<br /><em>Una mirada legal<br />para acompañarte.</em></h1><p class="intro">Soy Mica Spina, abogada. Te acompaño a comprender tu situación y dar el próximo paso, con atención cercana y criterio profesional.</p><a class="button" href={whatsapp}>Coordinemos una consulta <span aria-hidden="true">↗</span></a><p class="note">Atención presencial y virtual · Con turno previo</p></div>
-      <div class="hero-photo"><img src="/images/estudio.jpg" alt="Biblioteca y detalles del estudio jurídico" width="1800" height="2400" fetchpriority="high" /><div class="photo-note">Cada consulta empieza<br /><em>con una conversación.</em></div></div>
+      <div class="hero-photo"><Image src={estudio} alt="Biblioteca y detalles del estudio jurídico" widths={[480, 800, 1200]} sizes="(max-width: 760px) 88vw, 42vw" width={1200} format="webp" loading="eager" fetchpriority="high" /><div class="photo-note">Cada consulta empieza<br /><em>con una conversación.</em></div></div>
       <a class="scroll-hint" href="#areas">CONOCÉ CÓMO PUEDO AYUDARTE <span aria-hidden="true">↓</span></a>
     </section>
     <section id="areas" class="areas section">
@@ -41,6 +65,4 @@ const areas = ['Derecho Penal', 'Sucesiones', 'Amparos', 'Jubilaciones'];
   </script>
 </body>
 </html>
-<style is:global>
-  :root{--ink:#123648;--paper:#f5f1e9;--muted:#5e6b6d;--sand:#b9a58e;--line:#d8d4ca;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);font-synthesis:none}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0}a{color:inherit;text-decoration:none}button,a,summary{-webkit-tap-highlight-color:transparent}a:focus-visible,summary:focus-visible{outline:3px solid #b55b34;outline-offset:6px}header{display:flex;align-items:center;justify-content:space-between;padding:20px 6%;gap:28px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-family:Georgia,serif;font-size:23px}.brand img{object-fit:contain}.brand small{display:block;font:9px Arial;letter-spacing:3px;margin-top:7px}nav{display:flex;gap:30px;font-size:13px}.nav-cta{font-size:14px;border-bottom:1px solid;padding:10px 0}.nav-cta span{margin-left:25px}.hero{padding:75px 6% 30px;display:grid;grid-template-columns:1.15fr 1fr;gap:40px;position:relative;background:radial-gradient(ellipse at 40% 30%,#e8dfce88,transparent 60%)}.eyebrow{font-size:10px;font-weight:600;letter-spacing:2.4px;margin:0 0 25px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;font-weight:400}h1{font-size:clamp(42px,4.7vw,74px);line-height:1.08;letter-spacing:-2.5px;margin-bottom:28px}em{font-weight:400;color:#7d8075}p{line-height:1.7}.intro{max-width:440px;color:var(--muted);font-size:15px}.button{display:inline-flex;gap:32px;align-items:center;padding:19px 25px;border-radius:40px;background:var(--ink);color:var(--paper);font-size:13px;transition:transform .25s,background .25s}.button:hover{transform:translateY(-3px);background:#285363}.note{font-size:11px;margin:18px 0;color:var(--muted)}.hero-photo{position:relative;max-height:630px;border-radius:46% 46% 4px 4px;overflow:hidden;margin:5px 0 30px}.hero-photo>img{width:100%;height:100%;object-fit:cover;object-position:50% 45%}.hero-photo:after{content:'';position:absolute;inset:50% 0 0;background:linear-gradient(transparent,#123648b0)}.photo-note{position:absolute;bottom:40px;left:35px;color:white;font:25px/1.4 Georgia;z-index:1}.photo-note em{color:#e8ddcc}.scroll-hint{grid-column:1/-1;font-size:9px;letter-spacing:2px;display:flex;gap:30px;padding:20px 0}.section{padding:95px 9%}.section-heading{max-width:680px;margin-bottom:45px}h2{font-size:clamp(35px,3.8vw,54px);line-height:1.14;letter-spacing:-1.5px;margin-bottom:25px}.section-heading>p:last-child{color:var(--muted)}.family{display:flex;gap:36px;padding:45px;background:#e8e3d9;border-radius:4px 90px 4px 4px;position:relative;overflow:hidden}.number{font-size:11px;letter-spacing:2px;color:#75817f;white-space:nowrap}h3{font-size:30px;margin-bottom:18px}.family>div{max-width:560px;z-index:1}.family p:not(.eyebrow){color:var(--muted);font-size:15px}.family a{display:inline-block;border-bottom:1px solid;padding:12px 0;font-size:13px}.family-symbol{font:200px Georgia;position:absolute;right:30px;bottom:-55px;color:#d7d0c2}.area-row{display:flex;gap:36px;align-items:center;border-bottom:1px solid var(--line);padding:28px 10px;transition:padding .25s}.area-row:hover{padding-left:20px}.area-row h3{margin:0;flex:1;font-size:27px}.about{display:grid;grid-template-columns:1fr 1.2fr;gap:90px;align-items:center;background:#eee9df}.about-mark img{width:100%;height:auto;opacity:.85}.about p{font-size:15px;color:var(--muted)}.about .credential{font-size:11px;border-top:1px solid var(--line);padding-top:20px}.modes{display:grid;grid-template-columns:repeat(3,1fr);gap:45px;margin-top:55px}.modes article{border-top:1px solid var(--line);padding-top:25px}.modes h3{margin-top:25px}.modes p{font-size:14px;color:var(--muted)}.faq{display:grid;grid-template-columns:1fr 1fr;gap:70px;padding-top:20px}.questions details{border-bottom:1px solid var(--line);padding:23px 0}.questions summary{cursor:pointer;line-height:1.5}.questions p{font-size:14px;margin:18px 0 0;color:var(--muted)}.contact{text-align:center;background:radial-gradient(ellipse at top right,#36515b,var(--ink) 70%);color:var(--paper);border-radius:100px 0 0 0}.contact em{color:#c6b9a3}.contact>p:not(.eyebrow){color:#d0d6d4}.light{background:var(--paper);color:var(--ink);margin:15px 0 55px}.light:hover{background:#e0d7c7}.contact-links{display:flex;justify-content:center;gap:45px;border-top:1px solid #ffffff30;padding-top:30px;font-size:14px}.contact-links small{display:block;margin-top:10px;font-size:10px;color:#c4cece}footer{display:flex;justify-content:space-between;align-items:center;padding:30px 6%;font-size:11px}footer>span{font:20px Georgia}footer p{margin:0}.skip{position:fixed;top:-100px;left:20px;z-index:20;background:white;padding:15px}.skip:focus{top:10px}@media(prefers-reduced-motion:no-preference){.hero-copy{animation:enter .9s both}.hero-photo{animation:enter 1.2s both}.reveal.visible{animation:enter .8s both}@keyframes enter{from{opacity:.2;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}}@media(max-width:760px){header{padding:15px 5%;gap:10px}nav{display:none}.brand{font-size:19px}.brand img{width:42px;height:42px}.hero{grid-template-columns:1fr;padding:45px 6% 20px;gap:20px}h1{font-size:46px;letter-spacing:-1.8px}.hero-photo{height:420px;max-width:480px;width:100%;margin:10px auto}.section{padding:65px 6%}.family{padding:30px 22px;gap:18px}.family-symbol{opacity:.4}.about,.faq{grid-template-columns:1fr;gap:30px}.about-mark{max-width:220px;margin:auto}.modes{grid-template-columns:1fr;gap:20px;margin-top:30px}.modes h3{margin-top:15px}.contact-links{flex-direction:column;gap:25px}.contact{border-radius:60px 0 0 0}footer{flex-wrap:wrap;gap:20px}.area-row{gap:20px}.area-row h3{font-size:24px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
-</style>
+
