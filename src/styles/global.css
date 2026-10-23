@@ -52,6 +52,12 @@ h3{font-size:30px;margin-bottom:18px}
 .about .credential{font-size:11px;border-top:1px solid var(--line);padding-top:20px}
 .credentials{border-top:1px solid var(--line);padding-top:20px}
 .credentials p{font-size:11px;margin-bottom:7px;line-height:1.5}
+.credentials .credentials-title{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:12px}
+.credentials ul{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.credentials li{display:grid;gap:3px;border-left:2px solid var(--sand);padding-left:12px;line-height:1.45}
+.credentials strong{font-size:15px;font-weight:600}
+.credentials span{font-size:15px}
+.credentials small{font-size:13px;color:var(--muted)}
 .modes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,45px);margin-top:55px}
 .modes article{border-top:1px solid var(--line);padding-top:25px}
 .modes h3{margin-top:25px}
