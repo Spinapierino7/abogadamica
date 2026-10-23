@@ -25,8 +25,6 @@ Estas decisiones reemplazan las propuestas preliminares que contradigan más aba
 
 ## Implementación inicial
 
-Actualización 23/10/2026: primera landing compilada correctamente. Portada con imágenes WebP adaptables, navegación móvil, estilos separados, metadatos Open Graph, datos estructurados LegalService y configuración estática para Vercel. SITE_URL habilita canónica, sitemap e indexación; los previews permanecen con noindex. Ver README.md. Verificados enlaces internos, archivos referenciados, UTF-8 y JSON-LD sobre la salida compilada. Revisión visual pendiente: no hay navegador conectado en la sesión. No se ha publicado.
-
 Astro estático con CSS propio y animaciones progresivas, sin añadir bibliotecas que esta primera composición no necesita. React, Tailwind o GSAP se incorporarán si la evolución del diseño los justifica. El contenido sigue visible sin JavaScript y respeta reducción de movimiento.
 
 Pendiente antes de publicación definitiva: matrícula de Río Negro, domicilios, enlaces sociales, revisión de textos y preguntas frecuentes por la profesional, imágenes optimizadas y revisión visual en navegador y móvil. Las condiciones o aranceles de consulta no están confirmados y no se publican.
