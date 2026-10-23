@@ -25,6 +25,8 @@ Estas decisiones reemplazan las propuestas preliminares que contradigan más aba
 
 ## Implementación inicial
 
+Actualización de recursos aportados el 23/10/2026: retrato de Micaela de `misc/mas fotos/` incorporado en «Sobre mí». Se usan los logos vectoriales originales azul `#0a2846` para cabecera, pie y favicon; versiones PNG originales para Apple y Open Graph. Paleta original: azul `#0a2846`, hueso `#ebe6dc`, arena `#beaa96`. Matrículas tomadas de `misc/matriculas.txt`: 6549 Colegio de Abogados Gral. Roca; T XXIII F 17 Colegio de Abogados B. Blanca; Federal T 54 F 918. El resto de imágenes de `misc/` queda como material de referencia.
+
 Actualización 23/10/2026: primera landing compilada correctamente. Portada con imágenes WebP adaptables, navegación móvil, estilos separados, metadatos Open Graph, datos estructurados LegalService y configuración estática para Vercel. SITE_URL habilita canónica, sitemap e indexación; los previews permanecen con noindex. Ver README.md. Verificados enlaces internos, archivos referenciados, UTF-8 y JSON-LD sobre la salida compilada. Revisión visual pendiente: no hay navegador conectado en la sesión. No se ha publicado.
 
 Astro estático con CSS propio y animaciones progresivas, sin añadir bibliotecas que esta primera composición no necesita. React, Tailwind o GSAP se incorporarán si la evolución del diseño los justifica. El contenido sigue visible sin JavaScript y respeta reducción de movimiento.
