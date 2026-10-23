@@ -62,7 +62,7 @@ h3{font-size:30px;margin-bottom:18px}
 .modes article{border-top:1px solid var(--line);padding-top:25px}
 .modes h3{margin-top:25px}
 .modes p{font-size:14px;color:var(--muted)}
-.faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);padding-top:20px}
+.faq{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,70px);padding-top:90px}
 .questions details{border-bottom:1px solid var(--line);padding:23px 0}
 .questions summary{cursor:pointer;line-height:1.5}
 .questions p{font-size:14px;margin:18px 0 0;color:var(--muted)}
