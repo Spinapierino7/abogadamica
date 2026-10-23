@@ -123,3 +123,48 @@ em { color: #656b60; }
   .hero-photo { min-height: 0; }
   .button { max-width: 100%; line-height: 1.5; }
 }
+
+/* Legibilidad y controles consistentes entre plataformas. */
+body { font-size: 17px; }
+nav { font-size: 15px; }
+.brand small { font-size: 11px; }
+.eyebrow { font-size: 12px; letter-spacing: 2px; }
+.intro, .family p:not(.eyebrow), .about p { font-size: 17px; }
+.button { font-size: 16px; gap: 20px; min-height: 54px; justify-content: space-between; }
+.nav-cta { display: inline-flex; align-items: center; gap: 12px; font-size: 15px; }
+.nav-cta span { margin-left: 0; }
+.note, .scroll-hint, .number { font-size: 13px; }
+.family a { display: inline-flex; align-items: center; gap: 12px; font-size: 16px; }
+.credentials p { font-size: 13px; }
+.modes p, .questions p { font-size: 16px; }
+.questions summary { font-size: 17px; }
+.contact-links { font-size: 16px; }
+.contact-links small, footer { font-size: 13px; }
+.arrow-icon { display: inline-block; flex: 0 0 auto; width: 17px; height: 17px; vertical-align: middle; }
+.arrow-icon--down { transform: rotate(135deg); }
+.arrow-icon--up { transform: rotate(-45deg); }
+.area-row .arrow-icon { width: 21px; height: 21px; }
+footer a { display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 960px) and (min-width: 761px) {
+  .about, .faq { grid-template-columns: minmax(0, 1fr); }
+  .about-mark { width: min(100%, 400px); }
+  .modes { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  header nav a { font-size: 14px; min-height: 44px; display: inline-flex; align-items: center; }
+  .brand small { font-size: 10px; }
+  .section { padding-inline: 7%; }
+  .family { gap: 14px; }
+  .scroll-hint { gap: 14px; }
+  .contact-links { align-items: center; }
+  footer { align-items: center; }
+}
+@media (max-width: 380px) {
+  .brand { font-size: 17px; }
+  .nav-cta { font-size: 14px; }
+  .hero { padding-inline: 7%; }
+  .hero h1 { font-size: 34px; }
+  .button { width: 100%; padding-inline: 20px; }
+  .area-row h3 { font-size: 22px; }
+  .area-row { gap: 12px; }
+}
