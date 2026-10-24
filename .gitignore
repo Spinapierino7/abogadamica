@@ -3,3 +3,6 @@ dist/
 .astro/
 .vercel/
 .npm-cache/
+.env
+.env.*
+!.env.example

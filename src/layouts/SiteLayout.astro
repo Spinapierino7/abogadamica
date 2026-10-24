@@ -1,0 +1,75 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ContactMeasurement from '../components/ContactMeasurement.astro';
+import { business, socials } from '../data/site';
+import '../styles/global.css';
+interface Props { title?: string; description?: string }
+const {
+  title = 'Abogada Spina · Familia y asesoramiento jurídico en Bahía Blanca y Choele Choel',
+  description = 'Micaela Spina, abogada y Diplomada en Género, Igualdad y Derecho. Consultas de familia y otras áreas en Bahía Blanca y Choele Choel, presencial y virtual.',
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const indexable = import.meta.env.PROD && process.env.VERCEL_ENV !== 'preview';
+const origin = Astro.site!.href;
+const businessId = `${origin}#estudio`;
+const personId = `${origin}#micaela`;
+const profile = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {'@type': 'WebSite', '@id': `${origin}#sitio`, name: business.name, url: origin, inLanguage: 'es-AR'},
+    {'@type': 'LegalService', '@id': businessId, name: business.name, url: origin,
+      description: 'Asesoramiento jurídico en familia, penal, sucesiones, amparos y jubilaciones.',
+      telephone: '+5492915351031', email: business.email,
+      logo: new URL('/images/logo-horizontal-spina.png', canonical).href,
+      image: new URL('/images/social-card.png', canonical).href,
+      hasMap: business.maps, sameAs: socials.map(social => social.url),
+      areaServed: business.cities.map(name => ({'@type': 'City', name})),
+    },
+    {'@type': 'Person', '@id': personId, name: business.person, jobTitle: 'Abogada',
+      worksFor: {'@id': businessId}, sameAs: socials.map(social => social.url),
+      hasCredential: [
+        {'@type': 'EducationalOccupationalCredential', name: 'Diplomada en Género, Igualdad y Derecho'},
+        {'@type': 'EducationalOccupationalCredential', name: 'Matrícula Colegio de Abogados de Bahía Blanca', identifier: 'T XXIII F 17'},
+        {'@type': 'EducationalOccupationalCredential', name: 'Matrícula Colegio de Abogados Gral. Roca', identifier: '6549'},
+        {'@type': 'EducationalOccupationalCredential', name: 'Matrícula Federal', identifier: 'T 54 F 918'},
+      ],
+    },
+    {'@type': 'WebPage', '@id': canonical.href, url: canonical.href, name: title, description,
+      inLanguage: 'es-AR', isPartOf: {'@id': `${origin}#sitio`}, about: {'@id': personId}},
+  ],
+};
+---
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0a2846" />
+    <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
+    {import.meta.env.GOOGLE_SITE_VERIFICATION && <meta name="google-site-verification" content={import.meta.env.GOOGLE_SITE_VERIFICATION} />}
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/icono-spina.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:site_name" content={business.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/images/social-card.png', canonical)} />
+    <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Micaela Spina, abogada. Atención en Bahía Blanca y Choele Choel." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json" set:html={JSON.stringify(profile).replaceAll('<', '\u003c')} />
+  </head>
+  <body>
+    <a class="skip" href="#contenido">Ir al contenido</a>
+    <Header />
+    <slot />
+    <Footer />
+    <ContactMeasurement />
+  </body>
+</html>

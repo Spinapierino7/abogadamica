@@ -1,70 +1,27 @@
 ---
 import { Image } from 'astro:assets';
 import Arrow from '../components/Arrow.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 import estudio from '../assets/portada-estudio.jpg';
 import micaela from '../assets/micaela-estudio.jpg';
-import '../styles/global.css';
-const whatsapp = 'https://wa.me/5492915351031?text=Hola%20Mica%2C%20quisiera%20coordinar%20una%20consulta.';
-const areas = ['Derecho Penal', 'Sucesiones', 'Amparos', 'Jubilaciones'];
-const canonical = Astro.site ? new URL('/', Astro.site) : undefined;
-const indexable = Boolean(canonical) && process.env.VERCEL_ENV !== 'preview';
-const profile = {
-  '@context': 'https://schema.org', '@type': 'LegalService',
-  name: 'Abogada Spina', description: 'Asesoramiento jurídico en familia, penal, sucesiones, amparos y jubilaciones.',
-  telephone: '+5492915351031', email: 'abogadaspina@gmail.com',
-  areaServed: ['Bahía Blanca, Buenos Aires', 'Choele Choel, Río Negro'],
-  ...(canonical ? {url: canonical.href} : {}),
-};
+import { business, socials, practiceAreas, contactQuestions, whatsappFor } from '../data/site';
+const whatsapp = whatsappFor();
 ---
-<!doctype html>
-<html lang="es-AR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abogada Spina · Familia y asesoramiento jurídico en Bahía Blanca y Choele Choel</title>
-  <meta name="description" content="Micaela Spina, abogada. Atención en Bahía Blanca y Choele Choel, presencial y virtual. Familia, penal, sucesiones, amparos y jubilaciones. Coordiná tu consulta." />
-  <meta name="theme-color" content="#0a2846" />
-  <meta name="robots" content={indexable ? 'index, follow' : 'noindex, nofollow'} />
-  {canonical && <link rel="canonical" href={canonical} />}
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-  <link rel="apple-touch-icon" href="/images/icono-spina.png" />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="es_AR" />
-  <meta property="og:title" content="Abogada Spina · Un espacio para escucharte" />
-  <meta property="og:description" content="Atención cercana en Bahía Blanca y Choele Choel. Coordiná tu consulta presencial o virtual con Micaela Spina." />
-  {canonical && <meta property="og:url" content={canonical} />}
-  {canonical && <meta property="og:image" content={new URL('/images/logo-horizontal-spina.png', canonical)} />}
-  <meta property="og:image:alt" content="Logo de Micaela Spina, abogada" />
-  <script type="application/ld+json" set:html={JSON.stringify(profile).replaceAll('<', '\\u003c')} />
-</head>
-<body>
-  <a class="skip" href="#contenido">Ir al contenido</a>
-  <header>
-    <a class="brand" href="#inicio" aria-label="Abogada Spina, inicio"><img src="/images/icono-spina.svg" alt="" width="54" height="54" /><span>Abogada Spina<small>MICAELA SPINA</small></span></a>
-    <nav aria-label="Navegación principal"><a href="#areas">Áreas de práctica</a><a href="#sobre-mi">Sobre mí</a><a href="#contacto">Contacto</a></nav>
-    <a class="nav-cta" href={whatsapp}>Hablemos <Arrow /></a>
-  </header>
+<SiteLayout>
   <main id="contenido">
     <section class="hero" id="inicio">
-      <div class="hero-copy"><p class="eyebrow">BAHÍA BLANCA · CHOELE CHOEL</p><h1>Un espacio para<br />escucharte.<br /><em>Una mirada legal<br />para acompañarte.</em></h1><p class="intro">Soy Mica Spina, abogada. Te acompaño a comprender tu situación y dar el próximo paso, con atención cercana y criterio profesional.</p><a class="button" href={whatsapp}>Coordinemos una consulta <Arrow /></a><p class="note">Atención presencial y virtual · Con turno previo</p></div>
+      <div class="hero-copy"><p class="eyebrow">MICAELA SPINA · ABOGADA</p><h1>Asesoramiento legal, <em>con una mirada cercana.</em></h1><p class="intro">Derecho de Familia y otras áreas. Atención en Bahía Blanca y Choele Choel.</p><a class="button" href={whatsapp} data-contact="whatsapp" data-origin="portada">Consultar por WhatsApp <Arrow /></a><p class="note">Presencial y virtual · Con turno previo</p></div>
       <div class="hero-photo"><Image src={estudio} alt="Escritorio de Micaela Spina con su computadora" widths={[480, 800, 1200]} sizes="(max-width: 760px) 88vw, 42vw" width={1200} format="webp" loading="eager" fetchpriority="high" /><div class="photo-note">Cada consulta empieza<br /><em>con una conversación.</em></div></div>
       <a class="scroll-hint" href="#areas">CONOCÉ CÓMO PUEDO AYUDARTE <Arrow direction="down" /></a>
     </section>
     <section id="areas" class="areas section">
-      <div class="section-heading reveal"><p class="eyebrow">ÁREAS DE PRÁCTICA</p><h2>Distintas situaciones.<br /><em>El mismo compromiso.</em></h2><p>Un acompañamiento profesional que parte de escuchar lo que necesitás.</p></div>
-      <div class="family reveal"><span class="number">01 /</span><div><p class="eyebrow">UN ÁREA CENTRAL DE MI PRÁCTICA</p><h3>Derecho de Familia</h3><p>Hay decisiones que atraviesan lo más personal. Contá con un espacio de escucha y asesoramiento para conversar sobre tu situación familiar y evaluar los pasos a seguir.</p><a href={whatsapp}>Hablemos de tu consulta <Arrow /></a></div><span class="family-symbol" aria-hidden="true">&</span></div>
-      <div class="area-list">{areas.map((area, index) => <a class="area-row reveal" href={whatsapp}><span class="number">0{index + 2} /</span><h3>{area}</h3><Arrow /></a>)}</div>
+      <div class="section-heading"><p class="eyebrow">ÁREAS DE PRÁCTICA</p><h2>Distintas situaciones.<br /><em>El mismo compromiso.</em></h2><p>Un acompañamiento profesional que parte de escuchar lo que necesitás.</p></div>
+      <div class="family"><span class="number">01 /</span><div><p class="eyebrow">UN ÁREA CENTRAL DE MI PRÁCTICA</p><h3>Derecho de Familia</h3><p>Hay decisiones que atraviesan lo más personal. Contá con un espacio de escucha y asesoramiento para conversar sobre tu situación familiar y evaluar los pasos a seguir.</p><div class="family-actions"><a href="/familia/">Conocé cómo puedo acompañarte <Arrow /></a><a href={whatsappFor('Derecho de Familia')} data-contact="whatsapp" data-origin="area-familia">Consultar por WhatsApp <Arrow /></a></div></div><span class="family-symbol" aria-hidden="true">&</span></div>
+      <div class="area-list">{practiceAreas.map((area, index) => <a class="area-row" href={whatsappFor(area.name)} data-contact="whatsapp" data-origin={`area-${area.slug}`}><span class="number">0{index + 2} /</span><div class="area-copy"><h3>{area.name}</h3><p>{area.description}</p><small>Consultar por WhatsApp</small></div><Arrow /></a>)}</div>
     </section>
-    <section id="sobre-mi" class="about section reveal"><div class="about-mark"><Image src={micaela} alt="Micaela Spina firmando un documento" widths={[480, 800, 1200]} sizes="(max-width: 760px) 88vw, 38vw" width={800} format="webp" loading="lazy" /></div><div><p class="eyebrow">CONOCEME</p><h2>Micaela Spina.<br /><em>Abogada, con una<br />mirada cercana.</em></h2><p>Cuento con amplia experiencia en materia de familia, penal, sucesiones, amparos y jubilaciones, y soy Diplomada en Género, Igualdad y Derecho.</p><p>Ejerzo en las provincias de Buenos Aires y Río Negro, con atención en Bahía Blanca y Choele Choel. Mi propuesta es acompañarte con claridad y compromiso en cada consulta.</p><div class="credentials"><p class="credentials-title">Matrículas profesionales</p><ul><li><strong>Bahía Blanca</strong><span>Tº XXIII · Fº 17</span><small>Colegio de Abogados de Bahía Blanca</small></li><li><strong>Río Negro</strong><span>Matrícula 6549</span><small>Colegio de Abogados Gral. Roca</small></li><li><strong>Federal</strong><span>Tº 54 · Fº 918</span></li></ul></div></div></section>
-    <section class="attention section"><div class="reveal"><p class="eyebrow">CERCA, ESTÉS DONDE ESTÉS</p><h2>Encontramos un momento<br /><em>para conversar.</em></h2></div><div class="modes"><article class="reveal"><span class="number">01</span><h3>En el estudio</h3><p>Atención presencial en Bahía Blanca y Choele Choel. Escribime y coordinamos el lugar y el horario de tu consulta.</p></article><article class="reveal"><span class="number">02</span><h3>Por videollamada</h3><p>Si preferís la modalidad virtual, podemos conversar por WhatsApp en un horario acordado.</p></article><article class="reveal"><span class="number">03</span><h3>Acorde a tus horarios</h3><p>Contame tu disponibilidad. Buscamos un momento para la consulta que se adapte a tus actividades.</p></article></div></section>
-    <section id="contacto" class="contact section reveal"><p class="eyebrow">DEMOS EL PRIMER PASO</p><h2>Tu consulta merece<br /><em>ser escuchada.</em></h2><p>Escribime y coordinamos un momento para conversar.</p><a class="button light" href={whatsapp}>Hablemos por WhatsApp <Arrow /></a><div class="contact-links"><a href="tel:+542915351031">291 535 1031 <small>WhatsApp Business · Principal</small></a><a href="tel:+542984737131">2984 737131 <small>Teléfono alternativo · Río Negro</small></a><a href="mailto:abogadaspina@gmail.com">abogadaspina@gmail.com<small>Correo electrónico</small></a></div><div class="socials" aria-label="Redes sociales"><a href="https://www.tiktok.com/@abospina" target="_blank" rel="noopener noreferrer"><img src="/images/tiktok.svg" alt="" width="20" height="20" />TikTok</a><a href="https://www.instagram.com/abogadaspina?vrfl=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener noreferrer"><img src="/images/instagram.svg" alt="" width="20" height="20" />Instagram</a><a href="https://www.facebook.com/micaela.spina.2025" target="_blank" rel="noopener noreferrer"><img src="/images/facebook.svg" alt="" width="20" height="20" />Facebook</a></div></section>
-    <section class="faq section reveal"><div><p class="eyebrow">ANTES DE ESCRIBIRME</p><h2>Algunas preguntas<br /><em>para empezar.</em></h2></div><div class="questions"><details><summary>¿Cómo coordino una consulta?</summary><p>Escribime por WhatsApp, contame brevemente el motivo de tu consulta y tu disponibilidad. Coordinamos el turno por ese medio.</p></details><details><summary>¿Puedo consultar de forma virtual?</summary><p>Sí. Podemos coordinar una videollamada por WhatsApp.</p></details><details><summary>¿Dónde es la atención presencial?</summary><p>En Bahía Blanca, provincia de Buenos Aires, y en Choele Choel, Río Negro. Al coordinar el turno te confirmo el lugar de atención.</p></details></div></section>
+    <section id="sobre-mi" class="about section"><div class="about-mark"><Image src={micaela} alt="Micaela Spina firmando un documento" widths={[280, 420, 560, 840]} sizes="(max-width: 760px) 280px, (max-width: 960px) 340px, 440px" width={800} format="webp" loading="lazy" /></div><div><p class="eyebrow">CONOCEME</p><h2>Micaela Spina.<br /><em>Abogada, con una<br />mirada cercana.</em></h2><p>Cuento con amplia experiencia en materia de familia, penal, sucesiones, amparos y jubilaciones, y soy Diplomada en Género, Igualdad y Derecho.</p><p>Ejerzo en las provincias de Buenos Aires y Río Negro, con atención en Bahía Blanca y Choele Choel. Mi propuesta es acompañarte con claridad y compromiso en cada consulta.</p><div class="credentials"><p class="credentials-title">Matrículas profesionales</p><ul><li><strong>Bahía Blanca</strong><span>Tº XXIII · Fº 17</span><small>Colegio de Abogados de Bahía Blanca</small></li><li><strong>Río Negro</strong><span>Matrícula 6549</span><small>Colegio de Abogados Gral. Roca</small></li><li><strong>Federal</strong><span>Tº 54 · Fº 918</span></li></ul></div></div></section>
+    <section class="attention section"><div><p class="eyebrow">CERCA, ESTÉS DONDE ESTÉS</p><h2>Encontramos un momento<br /><em>para conversar.</em></h2></div><div class="modes"><article><span class="number">01</span><h3>En el estudio</h3><p>Atención presencial en Bahía Blanca y Choele Choel. Escribime y coordinamos el lugar y el horario de tu consulta.</p></article><article><span class="number">02</span><h3>Por videollamada</h3><p>Si preferís la modalidad virtual, podemos conversar por WhatsApp en un horario acordado.</p></article><article><span class="number">03</span><h3>Acorde a tus horarios</h3><p>Contame tu disponibilidad. Buscamos un momento para la consulta que se adapte a tus actividades.</p></article></div></section>
+    <section id="contacto" class="contact section"><p class="eyebrow">DEMOS EL PRIMER PASO</p><h2>Tu consulta merece<br /><em>ser escuchada.</em></h2><p>Escribime y coordinamos un momento para conversar.</p><a class="button light" href={whatsapp}>Hablemos por WhatsApp <Arrow /></a><p class="maps-link"><a href={business.maps} target="_blank" rel="noopener noreferrer" data-contact="maps" data-origin="contacto">Ver ficha en Google Maps <Arrow /></a></p><div class="contact-links"><a href="tel:+542915351031">291 535 1031 <small>WhatsApp Business · Principal</small></a><a href="tel:+542984737131">2984 737131 <small>Teléfono alternativo · Río Negro</small></a><a href="mailto:abogadaspina@gmail.com">abogadaspina@gmail.com<small>Correo electrónico</small></a></div><div class="socials" aria-label="Redes sociales">{socials.map(social => <a href={social.url} target="_blank" rel="noopener noreferrer" data-contact={social.slug}><img src={`/images/${social.slug}.svg`} alt="" width="20" height="20" />{social.name}</a>)}</div></section>
+    <section class="faq section"><div><p class="eyebrow">ANTES DE ESCRIBIRME</p><h2>Algunas preguntas<br /><em>para empezar.</em></h2></div><div class="questions">{contactQuestions.map(item => <details><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></section>
   </main>
-  <footer><img class="footer-logo" src="/images/logo-horizontal-spina.svg" alt="Spina Micaela, abogada" width="180" height="80" loading="lazy" /><p>Bahía Blanca · Choele Choel</p><a href="#inicio">Volver arriba <Arrow direction="up" /></a></footer>
-  <script>
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => {if (entry.isIntersecting) {entry.target.classList.add('visible'); observer.unobserve(entry.target);}}), {threshold: 0.08});
-    document.querySelectorAll('.reveal').forEach(element => observer.observe(element));
-  </script>
-</body>
-</html>
-
+</SiteLayout>

@@ -1,0 +1,52 @@
+---
+import Arrow from './Arrow.astro';
+import { whatsappFor } from '../data/site';
+const home = Astro.url.pathname === '/' ? '' : '/';
+const whatsapp = whatsappFor();
+---
+<header class="site-header" data-site-header>
+  <div class="header-inner">
+    <a class="brand" href={`${home}#inicio`} aria-label="Abogada Spina, inicio"><img src="/images/icono-spina.svg" alt="" width="48" height="48" /><span>Abogada Spina<small>MICAELA SPINA</small></span></a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation" hidden>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+      <span>Menú</span>
+    </button>
+    <nav id="site-navigation" class="site-nav" aria-label="Navegación principal">
+      <a href={`${home}#areas`}>Áreas de práctica</a><a href={`${home}#sobre-mi`}>Sobre mí</a><a href={`${home}#contacto`}>Contacto</a>
+      <a class="mobile-nav-cta" href={whatsapp} data-contact="whatsapp" data-origin="menu">Consultar por WhatsApp <Arrow /></a>
+    </nav>
+    <a class="nav-cta" href={whatsapp} data-contact="whatsapp" data-origin="cabecera">Hablemos <Arrow /></a>
+  </div>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = header?.querySelector<HTMLElement>('.site-nav');
+  if (header && toggle && navigation) {
+    const mobile = window.matchMedia('(max-width: 760px)');
+    let open = false;
+    const sync = () => {
+      toggle.hidden = !mobile.matches;
+      toggle.setAttribute('aria-expanded', String(mobile.matches && open));
+      navigation.hidden = mobile.matches && !open;
+      header.dataset.open = String(mobile.matches && open);
+    };
+    const close = (returnFocus = false) => { open = false; sync(); if (returnFocus && mobile.matches) toggle.focus(); };
+    toggle.addEventListener('click', () => { open = !open; sync(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape' && open) close(true); });
+    document.addEventListener('click', event => { if (open && event.target instanceof Node && !header.contains(event.target)) close(); });
+    navigation.addEventListener('click', event => {
+      const link = (event.target as Element).closest('a');
+      if (!link || !mobile.matches) return;
+      close();
+      const destination = new URL(link.href);
+      if (destination.pathname === location.pathname && destination.hash) {
+        const section = document.getElementById(decodeURIComponent(destination.hash.slice(1)));
+        if (section) { section.tabIndex = -1; section.focus({preventScroll:true}); }
+      } else if (link.origin !== location.origin) { toggle.focus(); }
+    });
+    mobile.addEventListener('change', () => close());
+    header.dataset.enhanced = 'true';
+    sync();
+  }
+</script>

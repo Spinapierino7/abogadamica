@@ -1,0 +1,40 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import Arrow from '../../components/Arrow.astro';
+import { whatsappFor } from '../../data/site';
+const whatsapp = whatsappFor('Derecho de Familia');
+---
+<SiteLayout title="Derecho de Familia · Micaela Spina · Bahía Blanca y Choele Choel" description="Consultas de Derecho de Familia con Micaela Spina. Atención presencial en Bahía Blanca y Choele Choel y consultas virtuales por WhatsApp, con turno previo.">
+  <main id="contenido">
+    <section class="service-hero section" id="inicio">
+      <a class="back-link" href="/#areas">Áreas de práctica</a>
+      <p class="eyebrow">DERECHO DE FAMILIA</p>
+      <h1>Derecho de Familia, <em>con una mirada cercana.</em></h1>
+      <p class="intro">Soy Micaela Spina, abogada y Diplomada en Género, Igualdad y Derecho. Te acompaño a conversar sobre tu situación familiar y evaluar los pasos a seguir.</p>
+      <a class="button" href={whatsapp} data-contact="whatsapp" data-origin="familia-portada">Coordinar una consulta <Arrow /></a>
+    </section>
+    <section class="section family-guide" aria-labelledby="temas-familia">
+      <div class="section-heading"><p class="eyebrow">INFORMACIÓN PARA ORIENTARTE</p><h2 id="temas-familia">¿Qué comprende el <em>Derecho de Familia?</em></h2><p>En Argentina, esta rama del derecho aborda los vínculos familiares y sus efectos personales y económicos. Estos son algunos de sus temas habituales.</p></div>
+      <div class="topic-list">
+        <article><h3>Divorcio y acuerdos</h3><p>El divorcio puede solicitarse de manera individual o conjunta. Sus efectos pueden requerir acuerdos sobre vivienda, bienes, cuidado de los hijos y alimentos. La propuesta reguladora permite abordar estas cuestiones.</p><a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/divorcio" target="_blank" rel="noopener noreferrer">Fuente: Derecho Fácil, Divorcio</a></article>
+        <article><h3>Alimentos</h3><p>La obligación alimentaria incluye mucho más que la comida: contempla necesidades de vivienda, educación, vestimenta y salud. Para analizar una cuota se consideran las necesidades de los hijos, los recursos disponibles y el aporte de las tareas de cuidado.</p><a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/alimentos" target="_blank" rel="noopener noreferrer">Fuente: Derecho Fácil, Alimentos</a></article>
+        <article><h3>Cuidado personal y comunicación</h3><p>El cuidado personal se refiere a la vida cotidiana de los hijos. Su organización y la comunicación con los progenitores deben atender al bienestar de niñas, niños y adolescentes. Un plan de parentalidad puede contemplar responsabilidades, tiempos y vacaciones.</p><a href="https://www.argentina.gob.ar/normativa/nacional/ley-26994-235975/actualizacion" target="_blank" rel="noopener noreferrer">Fuente: Código Civil y Comercial, arts. 648 a 656</a></article>
+        <article><h3>Uniones convivenciales</h3><p>El Código Civil y Comercial también regula las parejas que conviven sin casarse y reúnen los requisitos legales. Los pactos de convivencia pueden organizar aspectos económicos de la vida en común y de una eventual ruptura.</p><a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/uniones-convivenciales" target="_blank" rel="noopener noreferrer">Fuente: Derecho Fácil, Uniones convivenciales</a></article>
+        <article><h3>Compensación económica</h3><p>Ante un divorcio o el fin de una unión convivencial, puede corresponder una compensación por un desequilibrio económico vinculado con la relación y su ruptura. Su procedencia depende de las circunstancias del caso.</p><a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/divorcio" target="_blank" rel="noopener noreferrer">Fuente: Derecho Fácil, Compensación económica</a></article>
+        <article><h3>Vínculos y filiación</h3><p>El Derecho de Familia también comprende la determinación de los vínculos filiales y las reglas de adopción. Son materias con requisitos propios, centradas en los derechos de las personas involucradas.</p><a href="https://www.argentina.gob.ar/normativa/nacional/ley-26994-235975/actualizacion" target="_blank" rel="noopener noreferrer">Fuente: Código Civil y Comercial, Libro Segundo</a></article>
+      </div>
+      <p class="editorial-note">Información general sobre normativa argentina. Fuentes consultadas el <time datetime="2026-10-23">23 de octubre de 2026</time>. El abordaje concreto depende de tu situación y de las reglas de la jurisdicción correspondiente.</p>
+    </section>
+    <section class="section service-content" aria-labelledby="consulta-familia">
+      <div><p class="eyebrow">ATENCIÓN PERSONALIZADA</p><h2 id="consulta-familia">Tu situación merece <em>una mirada propia.</em></h2></div>
+      <div><p>Familia es un área central de mi práctica. La consulta es un espacio para escucharte, comprender lo que necesitás y conversar sobre las alternativas de abordaje de tu situación.</p><p>Trabajo con matrícula en las provincias de Buenos Aires y Río Negro, con atención en Bahía Blanca y Choele Choel. También podemos coordinar una videollamada por WhatsApp.</p><a class="text-link" href="/#sobre-mi">Conocé mi perfil y matrículas <Arrow /></a></div>
+    </section>
+    <section class="section attention" aria-labelledby="coordinar-familia"><p class="eyebrow">CÓMO EMPEZAR</p><h2 id="coordinar-familia">Coordinamos el momento <em>para conversar.</em></h2><ol class="consultation-steps"><li><strong>Escribime</strong><p>Contame brevemente que querés hacer una consulta de Familia.</p></li><li><strong>Buscamos un horario</strong><p>Decime tu disponibilidad y si preferís atención presencial o virtual.</p></li><li><strong>Acordamos el turno</strong><p>Confirmamos por WhatsApp los detalles para la consulta.</p></li></ol></section>
+    <section class="faq section" aria-labelledby="preguntas-familia"><div><p class="eyebrow">DUDAS FRECUENTES</p><h2 id="preguntas-familia">Algunas respuestas <em>para empezar.</em></h2></div><div class="questions">
+      <details><summary>¿Para divorciarme necesitamos estar de acuerdo?</summary><p>El pedido de divorcio puede presentarse de forma individual. Las consecuencias del divorcio deben abordarse mediante una propuesta reguladora. <a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/divorcio" target="_blank" rel="noopener noreferrer">Ver explicación oficial.</a></p></details>
+      <details><summary>¿La cuota alimentaria cubre solo comida?</summary><p>No. Comprende otras necesidades de los hijos, como vivienda, educación, vestimenta y salud; las tareas de cuidado también tienen valor económico. <a href="https://www.argentina.gob.ar/justicia/derechofacil/leysimple/alimentos" target="_blank" rel="noopener noreferrer">Ver explicación oficial.</a></p></details>
+      <details><summary>¿Puedo consultar aunque no haya matrimonio?</summary><p>Sí. Existen reglas para las uniones convivenciales y para los vínculos entre progenitores e hijos, además de las que corresponden al matrimonio. Podemos conversar sobre tu situación en una consulta.</p></details>
+    </div></section>
+    <section class="contact section" aria-labelledby="contacto-familia"><p class="eyebrow">DEMOS EL PRIMER PASO</p><h2 id="contacto-familia">Hablemos de <em>tu consulta.</em></h2><a class="button light" href={whatsapp} data-contact="whatsapp" data-origin="familia-contacto">Consultar por WhatsApp <Arrow /></a></section>
+  </main>
+</SiteLayout>

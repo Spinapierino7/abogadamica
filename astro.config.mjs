@@ -1,7 +1,8 @@
 import { defineConfig } from 'astro/config';
 
-// Set SITE_URL to the final HTTPS address when publishing.
+// Keep the known production URL as a fallback so a missing variable cannot
+// silently block indexing. Override when connecting a custom domain.
 export default defineConfig({
-  site: process.env.SITE_URL || undefined,
+  site: process.env.SITE_URL || 'https://abogadamica.vercel.app/',
   output: 'static',
 });
